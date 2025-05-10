@@ -3,12 +3,12 @@
 ## Player Login & Setup
 - [x] Show login screen for player to input their name
 - [x] Load configuration from a JSON file
-- [ ] Filter playable themes based on `playerName`
-- [ ] Theme selector (shows only themes allowed for player)
+- [x] Filter playable themes based on `playerName`
+- [x] Theme selector (shows only themes allowed for player)
 
 ## Core Gameplay
-- [ ] Display a grid with randomly placed words
-- [ ] Support horizontal, vertical, and diagonal word placement
+- [x] Display a grid with randomly placed words
+- [x] Support horizontal, vertical, and diagonal word placement
 - [ ] Allow selection of grid cells to form words
 - [ ] Detect correct word selections
 - [ ] Highlight found words in the grid
