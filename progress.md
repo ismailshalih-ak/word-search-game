@@ -1,8 +1,8 @@
 # Feature Checklist – Word Search Game (Ordered by Development Flow)
 
 ## Player Login & Setup
-- [ ] Show login screen for player to input their name
-- [ ] Load configuration from a JSON file
+- [x] Show login screen for player to input their name
+- [x] Load configuration from a JSON file
 - [ ] Filter playable themes based on `playerName`
 - [ ] Theme selector (shows only themes allowed for player)
 

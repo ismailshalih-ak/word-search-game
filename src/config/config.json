@@ -1,0 +1,11 @@
+{
+  "playerName": "ismail",
+  "duration": 300,
+  "themes": [
+    {
+      "themeName": "Fruits",
+      "words": ["apple", "banana", "grape", "mango"],
+      "completionMessage": "You found all the fruits!"
+    }
+  ]
+}
