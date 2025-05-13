@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import useTimer from '../hooks/useTimer';
 
 interface WordSearchGridProps {
   grid: string[][];
   words: string[];
+  duration: number;
   onWordFound: (word: string) => void;
+  onGameOver: () => void;
 }
 
-const WordSearchGrid: React.FC<WordSearchGridProps> = ({ grid, words, onWordFound }) => {
+const WordSearchGrid: React.FC<WordSearchGridProps> = ({ grid, words, duration, onWordFound, onGameOver }) => {
   const [selectedCells, setSelectedCells] = useState<[number, number][]>([]);
+  const { timeLeft, startTimer } = useTimer(duration, onGameOver);
   const [highlightedCells, setHighlightedCells] = useState<[number, number][]>([]);
   const [firstCell, setFirstCell] = useState<[number, number] | null>(null);
+
+  useEffect(() => {
+    startTimer();
+  }, [startTimer]);
 
   const handleCellClick = (rowIndex: number, cellIndex: number) => {
     const currentCell: [number, number] = [rowIndex, cellIndex];
@@ -89,33 +97,48 @@ const WordSearchGrid: React.FC<WordSearchGridProps> = ({ grid, words, onWordFoun
     setSelectedCells([]);
   };
 
+  const formatTime = (time: number) => {
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor((time % 3600) / 60);
+    const seconds = time % 60;
+
+    const paddedHours = hours.toString().padStart(2, '0');
+    const paddedMinutes = minutes.toString().padStart(2, '0');
+    const paddedSeconds = seconds.toString().padStart(2, '0');
+
+    return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+  };
+
   return (
-    <div className="word-search-grid">
-      {grid.map((row, rowIndex) => (
-        <div key={rowIndex} className="word-search-row">
-          {row.map((cell, cellIndex) => (
-            <button
-              key={cellIndex}
-              className={`word-search-cell ${
-                highlightedCells.some(
-                  (highlightedCell) =>
-                    highlightedCell[0] === rowIndex && highlightedCell[1] === cellIndex
-                )
-                  ? 'highlighted'
-                  : selectedCells.some(
-                    (selectedCell) =>
-                      selectedCell[0] === rowIndex && selectedCell[1] === cellIndex
+    <div>
+      <div className="timer">Time Left: {formatTime(timeLeft)}</div>
+      <div className="word-search-grid">
+        {grid.map((row, rowIndex) => (
+          <div key={rowIndex} className="word-search-row">
+            {row.map((cell, cellIndex) => (
+              <button
+                key={cellIndex}
+                className={`word-search-cell ${
+                  highlightedCells.some(
+                    (highlightedCell) =>
+                      highlightedCell[0] === rowIndex && highlightedCell[1] === cellIndex
                   )
-                    ? 'selected'
-                    : ''
-              }`}
-              onClick={() => handleCellClick(rowIndex, cellIndex)}
-            >
-              {cell}
-            </button>
-          ))}
-        </div>
-      ))}
+                    ? 'highlighted'
+                    : selectedCells.some(
+                      (selectedCell) =>
+                        selectedCell[0] === rowIndex && selectedCell[1] === cellIndex
+                    )
+                      ? 'selected'
+                      : ''
+                }`}
+                onClick={() => handleCellClick(rowIndex, cellIndex)}
+              >
+                {cell}
+              </button>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

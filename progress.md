@@ -13,7 +13,7 @@
 - [x] Detect correct word selections
 - [x] Highlight found words in the grid
 - [x] Display only found words (not full word list)
-- [ ] Countdown timer for game session
+- [x] Countdown timer for game session
 
 ## Persistence
 - [ ] Save progress (found words, time remaining) to `localStorage`

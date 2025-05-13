@@ -25,6 +25,7 @@ function App() {
   const [selectedTheme, setSelectedTheme] = useState<Theme | null>(null);
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [foundWords, setFoundWords] = useState<string[]>([]);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   useEffect(() => {
     // Load config from JSON file
@@ -60,8 +61,22 @@ function App() {
     return <LoginScreen onLogin={handleLogin} configPlayerName={config.playerName} />;
   }
 
+  const handleGameOver = () => {
+    setIsGameOver(true);
+  };
+
   if (!selectedTheme) {
     return <ThemeSelector themes={config.themes} onThemeSelect={handleThemeSelect} />;
+  }
+
+  if (isGameOver) {
+    return (
+      <div>
+        <h1>Game Over!</h1>
+        <p>Time ran out.</p>
+        {/* You could add options to play again or select a new theme here */}
+      </div>
+    );
   }
 
   return (
@@ -73,7 +88,9 @@ function App() {
         <WordSearchGrid
           grid={grid}
           words={selectedTheme.words}
+          duration={config.duration}
           onWordFound={handleWordFound}
+          onGameOver={handleGameOver}
         />
       )}
       <div>
