@@ -4,6 +4,7 @@ import LoginScreen from './components/LoginScreen';
 import ThemeSelector from './components/ThemeSelector';
 import WordSearchGrid from './components/WordSearchGrid';
 import generateWordSearch from './utils/gridGenerator';
+import './styles/WordSearchGrid.css';
 
 interface Theme {
   themeName: string;
@@ -23,6 +24,7 @@ function App() {
   const [config, setConfig] = useState<Config | null>(null);
   const [selectedTheme, setSelectedTheme] = useState<Theme | null>(null);
   const [grid, setGrid] = useState<string[][] | null>(null);
+  const [foundWords, setFoundWords] = useState<string[]>([]);
 
   useEffect(() => {
     // Load config from JSON file
@@ -41,6 +43,13 @@ function App() {
     setSelectedTheme(theme);
     const newGrid = generateWordSearch(theme.words, 10); // You can adjust the grid size
     setGrid(newGrid);
+    setFoundWords([]); // Reset found words on new theme
+  };
+
+  const handleWordFound = (word: string) => {
+    if(!foundWords.includes(word)) {
+      setFoundWords([...foundWords, word]);
+    }
   };
 
   if (!config) {
@@ -60,7 +69,21 @@ function App() {
       <h1>Word Search Game</h1>
       <p>Welcome, {playerName}!</p>
       <p>Selected Theme: {selectedTheme.themeName}</p>
-      {grid && <WordSearchGrid grid={grid} />}
+      {grid && (
+        <WordSearchGrid
+          grid={grid}
+          words={selectedTheme.words}
+          onWordFound={handleWordFound}
+        />
+      )}
+      <div>
+        <h3>Found Words:</h3>
+        <ul>
+          {foundWords.map((word, index) => (
+            <li key={index}>{word}</li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }

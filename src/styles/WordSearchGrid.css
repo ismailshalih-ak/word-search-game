@@ -1,0 +1,32 @@
+.word-search-grid {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.word-search-row {
+  display: flex;
+}
+
+.word-search-cell {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  background-color: #f0f0f0; /* Light gray background */
+  color: black; /* Black text */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.word-search-cell.selected {
+  background-color: #ffdb58; /* Yellow background */
+  color: black; /* Black text */
+}
+
+.word-search-cell.highlighted {
+  background-color: #aaff80; /* Green background */
+  color: black; /* Black text */
+}

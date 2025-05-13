@@ -9,10 +9,10 @@
 ## Core Gameplay
 - [x] Display a grid with randomly placed words
 - [x] Support horizontal, vertical, and diagonal word placement
-- [ ] Allow selection of grid cells to form words
-- [ ] Detect correct word selections
-- [ ] Highlight found words in the grid
-- [ ] Display only found words (not full word list)
+- [x] Allow selection of grid cells to form words
+- [x] Detect correct word selections
+- [x] Highlight found words in the grid
+- [x] Display only found words (not full word list)
 - [ ] Countdown timer for game session
 
 ## Persistence
