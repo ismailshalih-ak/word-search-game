@@ -21,5 +21,5 @@
 - [ ] Reset progress when switching themes or players
 
 ## Completion & Feedback
-- [ ] Show `completionMessage` when all words in a theme are found
-- [ ] Game over screen when timer runs out
+- [x] Show `completionMessage` when all words in a theme are found
+- [x] Game over screen when timer runs out

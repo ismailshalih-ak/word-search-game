@@ -10,6 +10,7 @@ interface Theme {
   themeName: string;
   words: string[];
   completionMessage: string;
+  gameOverMessage: string;
 }
 
 interface Config {
@@ -65,15 +66,26 @@ function App() {
     setIsGameOver(true);
   };
 
+  const hasWon = selectedTheme && foundWords.length === selectedTheme.words.length;
+  const gameEnded = isGameOver || hasWon;
+
   if (!selectedTheme) {
     return <ThemeSelector themes={config.themes} onThemeSelect={handleThemeSelect} />;
   }
 
-  if (isGameOver) {
+  if (gameEnded) {
     return (
       <div>
-        <h1>Game Over!</h1>
-        <p>Time ran out.</p>
+        <h1>{hasWon ? selectedTheme.completionMessage : 'Game Over!'}</h1>
+        {!hasWon && <p>{selectedTheme.gameOverMessage}</p>}
+        <div>
+          <h3>Found Words:</h3>
+          <ul>
+            {foundWords.map((word, index) => (
+              <li key={index}>{word}</li>
+            ))}
+          </ul>
+        </div>
         {/* You could add options to play again or select a new theme here */}
       </div>
     );
