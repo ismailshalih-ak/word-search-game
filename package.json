@@ -1,5 +1,6 @@
 {
-  "name": "birthday",
+  "name": "word-search-game",
+  "homepage": "https://ismailshalih-ak.github.io/word-search-game",
   "private": true,
   "version": "0.0.0",
   "type": "module",
