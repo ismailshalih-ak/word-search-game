@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
 import LoginScreen from './components/LoginScreen';
 import ThemeSelector from './components/ThemeSelector';
@@ -19,22 +19,26 @@ interface Config {
   themes: Theme[];
 }
 
+const config: Config = {
+  "playerName": "ismail",
+  "duration": 60,
+  "themes": [
+    {
+      "themeName": "Fruits",
+      "words": ["apple", "banana", "grape", "mango"],
+      "completionMessage": "You found all the fruits!",
+      "gameOverMessage": "You found some of the fruits!"
+    }
+  ]
+};
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [playerName, setPlayerName] = useState('');
-  const [config, setConfig] = useState<Config | null>(null);
   const [selectedTheme, setSelectedTheme] = useState<Theme | null>(null);
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [foundWords, setFoundWords] = useState<string[]>([]);
   const [isGameOver, setIsGameOver] = useState(false);
-
-  useEffect(() => {
-    // Load config from JSON file
-    fetch('/src/config/config.json')
-      .then(response => response.json())
-      .then(data => setConfig(data))
-      .catch(error => console.error('Error loading config:', error));
-  }, []);
 
   const handleLogin = (name: string) => {
     setPlayerName(name);
@@ -110,7 +114,7 @@ function App() {
         <h3>Found Words:</h3>
         <ul style={{ listStyleType: 'none', padding: 0 }}>
           {foundWords.map((word, index) => (
-            <li key={index} style={{ marginBottom: '0.2em'}}>{word}</li>
+            <li key={index} style={{ marginBottom: '0.2em' }}>{word}</li>
           ))}
         </ul>
       </div>
