@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface ThemeSelectorProps {
-  themes: { themeName: string; words: string[]; completionMessage: string }[];
-  onThemeSelect: (theme: { themeName: string; words: string[]; completionMessage: string }) => void;
+  themes: { themeName: string; words: string[]; completionMessage: string, gameOverMessage: string }[];
+  onThemeSelect: (theme: { themeName: string; words: string[]; completionMessage: string, gameOverMessage: string  }) => void;
 }
 
 const ThemeSelector: React.FC<ThemeSelectorProps> = ({ themes, onThemeSelect }) => {
