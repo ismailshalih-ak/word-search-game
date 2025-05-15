@@ -1,0 +1,39 @@
+## File Structure
+### Allowed Modifications
+- `src/config/**` — Configuration loader and validator
+- `src/components/**` — UI components (e.g., Grid, Timer, LoginScreen)
+- `src/utils/**` — Utility functions (e.g., word placement, selection logic)
+- `src/hooks/**` — Custom React hooks (e.g., useTimer, usePersistentState)
+- `src/styles/**` — Tailwind CSS or other styles
+- `src/App.tsx`, `src/main.tsx` — Main entry points
+- `public/**` — Static files like `index.html`, favicon, manifest
+- `tailwind.config.js`, `postcss.config.js` — Style configuration
+### Do NOT Modify
+- `node_modules/**` — External dependencies
+- `dist/**`, `build/**` — Output directories
+- `.git/**` — Git metadata and config
+- `.env*` — Environment variables or secrets
+
+## Coding Conventions
+- Use TypeScript and React functional components
+- Use hooks for side effects or persistent state
+- Use camelCase for variables/functions, PascalCase for components
+- Keep functions small and focused on a single task
+- Split logic-heavy or long files into smaller modules
+- Comment non-obvious code with inline comments or JSDoc
+
+## Security Practices
+- Never expose secrets or API keys
+- Sanitize all user inputs (e.g., name matching)
+- Load only secure external assets (HTTPS)
+- Don’t leak internal config unless needed for the frontend
+
+## Architecture
+- Keep components clean and UI-focused
+- Extract non-UI logic to `utils/` or `hooks/`
+- Separate configuration from game logic (`src/config/**`)
+- Use composition and reusability (e.g., `<GridCell />`, `<Timer />`)
+
+## Task Completion
+- Git commit after each task is done
+- Check completed task in progress.md if you are sure the feature is completed
