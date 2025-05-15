@@ -78,42 +78,43 @@ function App() {
       <div>
         <h1>{hasWon ? selectedTheme.completionMessage : 'Game Over!'}</h1>
         {!hasWon && <p>{selectedTheme.gameOverMessage}</p>}
-        <div>
-          <h3>Found Words:</h3>
-          <ul>
-            {foundWords.map((word, index) => (
-              <li key={index}>{word}</li>
-            ))}
-          </ul>
-        </div>
+        <h3>Found Words:</h3>
+        <ul style={{ listStyleType: 'none', padding: 0 }}>
+          {foundWords.map((word, index) => (
+            <li key={index} style={{ marginBottom: '0.2em' }}>{word}</li>
+          ))}
+        </ul>
         {/* You could add options to play again or select a new theme here */}
       </div>
     );
   }
 
   return (
-    <>
-      <h1>Word Search Game</h1>
-      <p>Welcome, {playerName}!</p>
-      <p>Selected Theme: {selectedTheme.themeName}</p>
-      {grid && (
-        <WordSearchGrid
-          grid={grid}
-          words={selectedTheme.words}
-          duration={config.duration}
-          onWordFound={handleWordFound}
-          onGameOver={handleGameOver}
-        />
-      )}
+    <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'flex-start' }}>
+      <div>
+        <h1>Word Search Game</h1>
+        <p>Welcome, {playerName}!</p>
+        <p>Selected Theme: {selectedTheme.themeName}</p>
+        {grid && (
+          <WordSearchGrid
+            grid={grid}
+            words={selectedTheme.words}
+            duration={config.duration}
+            onWordFound={handleWordFound}
+            onGameOver={handleGameOver}
+            style={{ marginRight: '2em'}}
+          />
+        )}
+      </div>
       <div>
         <h3>Found Words:</h3>
-        <ul>
+        <ul style={{ listStyleType: 'none', padding: 0 }}>
           {foundWords.map((word, index) => (
-            <li key={index}>{word}</li>
+            <li key={index} style={{ marginBottom: '0.2em'}}>{word}</li>
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 

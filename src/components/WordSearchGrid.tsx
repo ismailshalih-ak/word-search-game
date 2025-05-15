@@ -7,9 +7,10 @@ interface WordSearchGridProps {
   duration: number;
   onWordFound: (word: string) => void;
   onGameOver: () => void;
+  style?: React.CSSProperties;
 }
 
-const WordSearchGrid: React.FC<WordSearchGridProps> = ({ grid, words, duration, onWordFound, onGameOver }) => {
+const WordSearchGrid: React.FC<WordSearchGridProps> = ({ grid, words, duration, onWordFound, onGameOver, style }) => {
   const [selectedCells, setSelectedCells] = useState<[number, number][]>([]);
   const { timeLeft, startTimer } = useTimer(duration, onGameOver);
   const [highlightedCells, setHighlightedCells] = useState<[number, number][]>([]);
@@ -110,7 +111,7 @@ const WordSearchGrid: React.FC<WordSearchGridProps> = ({ grid, words, duration, 
   };
 
   return (
-    <div>
+    <div style={style}>
       <div className="timer">Time Left: {formatTime(timeLeft)}</div>
       <div className="word-search-grid">
         {grid.map((row, rowIndex) => (

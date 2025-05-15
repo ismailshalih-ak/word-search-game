@@ -27,8 +27,9 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, configPlayerName }) 
           placeholder="Your Name"
           value={playerName}
           onChange={(e) => setPlayerName(e.target.value)}
+          className="name-input"
         />
-        <button type="submit">Login</button>
+        <button type="submit" style={{ marginLeft: '1em' }}>Login</button>
         {error && <p className="error">{error}</p>}
       </form>
     </div>
